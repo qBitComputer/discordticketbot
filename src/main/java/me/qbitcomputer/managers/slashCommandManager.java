@@ -12,7 +12,8 @@ public class slashCommandManager extends ListenerAdapter {
     @Override
     public void onGuildReady(GuildReadyEvent event) {
         List<CommandData> commands = new ArrayList<>();
-        commands.add(Commands.slash("ping", "testing123!"));
+        commands.add(Commands.slash("ping", "You can use this command to make sure the bot is alive :)"));
+        commands.add(Commands.slash("ticket", "This will create a new ticket."));
         event.getGuild().updateCommands().addCommands(commands).queue();
     }
 }
