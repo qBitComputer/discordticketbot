@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.awt.*;
@@ -44,4 +45,20 @@ public class Ticket extends ListenerAdapter {
             }
         }
     }
-}
+    @Override
+    public void onButtonInteraction(ButtonInteractionEvent event) {
+        if (event.getComponentId().equals("billing")) {
+            Dotenv dotenv = Dotenv.load();
+            EmbedBuilder billingembed = new EmbedBuilder();
+            billingembed.setTitle("We're on our way!");
+            billingembed.setColor(Color.decode("#0013ca"));
+            String name = dotenv.get("SERVERNAME");
+            String billingrole = dotenv.get("STAFFBILLINGROLE");
+            billingembed.setFooter(name);
+            billingembed.setDescription("A staff member will review your problem!");
+            billingembed.setDescription("<@&" + billingrole + ">");
+            event.getChannel().sendMessageEmbeds(billingembed.build()).queue();
+            }
+        }
+
+    }
