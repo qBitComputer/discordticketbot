@@ -27,11 +27,11 @@ public class Ticket extends ListenerAdapter {
 
             } else {
                 EmbedBuilder embed = new EmbedBuilder();
-                embed.setTitle("Ticket " + event.getUser().getName());
+                embed.setTitle("Creating a ticket for: " + event.getUser().getName());
                 embed.setColor(Color.decode("#0013ca"));
                 String name = dotenv.get("SERVERNAME");
                 embed.setFooter(name);
-                embed.addField("Hi there, We are ready to help!", "Please specify your type of issue and a staff member will be with you shortly!", false);
+                embed.addField("Hi there, We're ready to help! ", "A staff member from team " + "<@&" + dotenv.get("BILLINGROLE") + ">" +" will be with you shortly!", false);
                 event.replyEmbeds(embed.build()).addActionRow(StringSelectMenu.create("choose-ticket")
                         .addOption("Billing, Ranks & Cosmetics " + Emoji.fromUnicode("U+1F4B8").getFormatted(), "billing")
                         .addOption("Glitches, Hacking and Abuse " + Emoji.fromUnicode("U+26D4").getFormatted(), "glitch")
@@ -41,7 +41,6 @@ public class Ticket extends ListenerAdapter {
             }
         }
     }
-
     @Override
     public void onStringSelectInteraction(StringSelectInteractionEvent event) {
         Dotenv dotenv = Dotenv.load();
@@ -57,30 +56,32 @@ public class Ticket extends ListenerAdapter {
                     embed.setColor(Color.decode("#0013ca"));
                     String name = dotenv.get("SERVERNAME");
                     embed.setFooter(name);
-                    embed.addField("Hi there, We're ready to help! ", "A staff member will be with you shortly!", false);
+                    embed.addField("Hi there, We're ready to help! ", "A staff member from team " + "<@&" + dotenv.get("BILLINGROLE") + ">" + " will be with you shortly!", false);
                     channel.sendMessageEmbeds(embed.build())
                             .addActionRow(
                                     net.dv8tion.jda.api.interactions.components.buttons.Button.danger("close", "Close").withEmoji(Emoji.fromUnicode("U+274C"))
                             )
 
                             .queue();
+                    channel.sendMessage("<@&" + dotenv.get("BILLINGROLE") + ">").queue();
                 } else if (event.getValues().get(0).equals("event")) {
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setTitle("Event issue " + event.getUser().getName());
                     embed.setColor(Color.decode("#0013ca"));
                     String name = dotenv.get("SERVERNAME");
                     embed.setFooter(name);
-                    embed.addField("Hi there, We're ready to help! ", "A staff member will be with you shortly!", false);
+                    embed.addField("Hi there, We're ready to help! ", "A staff member from team " + "<@&" + dotenv.get("EVENTROLE") + ">" + " will be with you shortly!", false);
                     channel.sendMessageEmbeds(embed.build())
                             .addActionRow(
                                     net.dv8tion.jda.api.interactions.components.buttons.Button.danger("close", "Close").withEmoji(Emoji.fromUnicode("U+274C"))
                             )
-
                             .queue();
+                    channel.sendMessage("<@&" + dotenv.get("EVENTROLE") + ">").queue();
                 } else if (event.getValues().get(0).equals("other")) {
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setTitle("Other issue " + event.getUser().getName());
                     embed.setColor(Color.decode("#0013ca"));
+                    embed.addField("Hi there, We're ready to help! ", "A staff member from team " + "<@&" + dotenv.get("OTHERROLE") + ">" + " will be with you shortly!", false);
                     String name = dotenv.get("SERVERNAME");
                     embed.setFooter(name);
 
@@ -90,11 +91,23 @@ public class Ticket extends ListenerAdapter {
                             )
 
                             .queue();
+                    channel.sendMessage("<@&" + dotenv.get("OTHERROLE") + ">").queue();
+                } else if (event.getValues().get(0).equals("glitch")) {
+                    EmbedBuilder embed = new EmbedBuilder();
+                    embed.setTitle("Glitch issue " + event.getUser().getName());
+                    embed.setColor(Color.decode("#0013ca"));
+                    String name = dotenv.get("SERVERNAME");
+                    embed.setFooter(name);
+                    embed.addField("Hi there, We're ready to help! ", "A staff member from team " + "<@&" + dotenv.get("GLITCHROLE") + ">" + " will be with you shortly!", false);
+                    channel.sendMessageEmbeds(embed.build())
+                            .addActionRow(
+                                    net.dv8tion.jda.api.interactions.components.buttons.Button.danger("close", "Close").withEmoji(Emoji.fromUnicode("U+274C"))
+                            )
+                            .queue();
+                    channel.sendMessage("<@&" + dotenv.get("GLITCHGROLE") + ">").queue();
                 }
             });
-
         }
-        ;
     }
 
     @Override
