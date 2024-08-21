@@ -2,6 +2,7 @@ package me.qbitcomputer;
 import io.github.cdimascio.dotenv.Dotenv;
 import me.qbitcomputer.commands.Ping;
 import me.qbitcomputer.commands.Ticket;
+import me.qbitcomputer.listeners.WelcomeListener;
 import me.qbitcomputer.managers.slashCommandManager;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
@@ -28,7 +29,8 @@ public class Main {
         shardManager.addEventListener(
                 new slashCommandManager(),
                 new Ping(),
-                new Ticket()
+                new Ticket(),
+                new WelcomeListener()
 
         );
 
