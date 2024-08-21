@@ -31,7 +31,7 @@ public class Ticket extends ListenerAdapter {
                 embed.setColor(Color.decode("#0013ca"));
                 String name = dotenv.get("SERVERNAME");
                 embed.setFooter(name);
-                embed.addField("Hi there, We're ready to help! ", "A staff member from team " + "<@&" + dotenv.get("BILLINGROLE") + ">" +" will be with you shortly!", false);
+                embed.addField("Hi there, We are ready to help!", "Please specify your type of issue and a staff member will be with you shortly!", false);
                 event.replyEmbeds(embed.build()).addActionRow(StringSelectMenu.create("choose-ticket")
                         .addOption("Billing, Ranks & Cosmetics " + Emoji.fromUnicode("U+1F4B8").getFormatted(), "billing")
                         .addOption("Glitches, Hacking and Abuse " + Emoji.fromUnicode("U+26D4").getFormatted(), "glitch")
