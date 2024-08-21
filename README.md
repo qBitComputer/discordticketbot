@@ -6,3 +6,5 @@ it has a ticket system where you can choose a reason, and it will assign a team 
 
 Made for the hackclub arcade challenge :D
 
+
+![image](https://github.com/user-attachments/assets/b8581132-c224-4328-8894-1d3e133d28bd)
